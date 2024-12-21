@@ -32,9 +32,15 @@ void fileReplace(const char *filename, const char *old_text, const char *new_tex
         }
         fputs(buffer, temp_File);
     }
-    rename("tempFile.txt", filename);
-    fclose(temp_File);
     fclose(File);
+    fclose(temp_File);
+    remove(filename);
+    if (rename("tempFile.txt", filename))
+    {
+        printf("Ошибка изменения файла\n");
+        remove("tempFile.txt");
+        exit(1);
+    }
 }
 
 void fileDelete(const char *filename, const char *delete_text)
@@ -61,9 +67,15 @@ void fileDelete(const char *filename, const char *delete_text)
         }
         fputs(buffer, temp_File);
     }
-    rename("tempFile.txt", filename);
-    fclose(temp_File);
     fclose(File);
+    fclose(temp_File);
+    remove(filename);
+    if (rename("tempFile.txt", filename))
+    {
+        printf("Ошибка изменения файла\n");
+        remove("tempFile.txt");
+        exit(1);
+    }
 }
 
 void fileFront(const char *filename, const char *text)
