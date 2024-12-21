@@ -8,13 +8,13 @@ void fileReplace(const char *filename, const char *old_text, const char *new_tex
     FILE *File = fopen(filename, "r");
     if (File == NULL)
     {
-        printf("Не удалось открыть файл\n");
+        printf("Не удалось открыть файл: %s\n", filename);
         exit(1);
     }
     FILE *temp_File = fopen("tempFile.txt", "w");
     if (temp_File == NULL)
     {
-        printf("Не удалось открыть файл\n");
+        printf("Не удалось открыть файл: tempFile.txt\n");
         exit(1);
     }
     char buffer[1024];
@@ -37,7 +37,7 @@ void fileReplace(const char *filename, const char *old_text, const char *new_tex
     remove(filename);
     if (rename("tempFile.txt", filename))
     {
-        printf("Ошибка изменения файла\n");
+        printf("Ошибка изменения файла: tempFile.txt\n");
         remove("tempFile.txt");
         exit(1);
     }
@@ -48,13 +48,13 @@ void fileDelete(const char *filename, const char *delete_text)
     FILE *File = fopen(filename, "r");
     if (File == NULL)
     {
-        printf("Не удалось открыть файл\n");
+        printf("Не удалось открыть файл: %s\n", filename);
         exit(1);
     }
     FILE *temp_File = fopen("tempFile.txt", "w");
     if (temp_File == NULL)
     {
-        printf("Не удалось открыть файл\n");
+        printf("Не удалось открыть файл: tempFile.txt\n");
         exit(1);
     }
     char buffer[1024];
@@ -72,7 +72,7 @@ void fileDelete(const char *filename, const char *delete_text)
     remove(filename);
     if (rename("tempFile.txt", filename))
     {
-        printf("Ошибка изменения файла\n");
+        printf("Ошибка изменения файла: tempFile.txt\n");
         remove("tempFile.txt");
         exit(1);
     }
